@@ -14,11 +14,18 @@ const initState = {
 type ActionType = { field: string; value: string };
 
 const reduer = (state: typeof initState, action: ActionType) => {
-  return { ...state, [action.field]: action.value };
+  const newState = { ...state, [action.field]: action.value };
+  localStorage.setItem('SHOWCASES', JSON.stringify(newState));
+  return newState;
 };
 
 function App() {
-  const [state, dispatch] = useReducer(reduer, initState);
+  const [state, dispatch] = useReducer(
+    reduer,
+    localStorage.getItem('SHOWCASES')
+      ? JSON.parse(localStorage.getItem('SHOWCASES') as string)
+      : initState
+  );
   const bgColors = [
     'bg-primary',
     'bg-secondary',
@@ -136,10 +143,16 @@ function App() {
             style={{ minWidth: '40rem' }}
           >
             <div className={`d-flex card-body ${state.size} ${state.position}`}>
-              <p className="card-text" style={{ fontFamily: "'Pinyon Script', cursive" }}>
+              <p
+                className="card-text font-weight-bold"
+                style={{ fontFamily: "'Pinyon Script', cursive" }}
+              >
                 {toFullWidth(state.text)}
               </p>
-              <p className="card-text" style={{ fontFamily: "'Pinyon Script', cursive" }}>
+              <p
+                className="card-text font-weight-bold"
+                style={{ fontFamily: "'Pinyon Script', cursive" }}
+              >
                 {state.text}
               </p>
               <p
