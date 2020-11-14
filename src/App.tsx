@@ -68,7 +68,7 @@ function App() {
 
   return (
     <>
-      <div className="my-5">
+      <div className="bg-green-200 h-full my-5">
         <div className="mx-auto" style={{ width: '30rem' }}>
           <div className="form-group">
             <input
