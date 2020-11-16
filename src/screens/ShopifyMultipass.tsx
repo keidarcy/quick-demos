@@ -1,5 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import { Multipass } from 'multipass-js';
+import { ScreenWrapper } from '../components/ScreenWrapper';
 
 enum ACTION_TYPES {
   CHANGE = 'CHANGE',
@@ -99,13 +100,17 @@ const t = {
   }
 };
 
-function ShopifyMultipass() {
+interface ShopifyMultipassProps {
+  id: string;
+}
+
+export const ShopifyMultipass: React.FC<ShopifyMultipassProps> = ({ id }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isJa, setIsJa] = useState(
     !new URLSearchParams(window.location.search).get('lang')
   );
   return (
-    <>
+    <ScreenWrapper id={id} color="bg-teal-100">
       <div className="btn-group" role="group" aria-label="Basic example">
         <button
           type="button"
@@ -212,8 +217,6 @@ function ShopifyMultipass() {
           {state.url}
         </a>
       </div>
-    </>
+    </ScreenWrapper>
   );
-}
-
-export default ShopifyMultipass;
+};
