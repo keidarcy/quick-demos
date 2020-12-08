@@ -14,7 +14,7 @@ export const Menu: React.FC<MenuProps> = ({ screens, id }) => {
       .map((str) => str.charAt(0).toUpperCase() + str.slice(1))
       .join(' ');
 
-  const path = window.location.host.includes('github') ?? PackageJson.name;
+  const path = window.location.host.includes('github') ? '/' + PackageJson.name : '';
 
   return (
     <ScreenWrapper id={id} color="bg-blue-200">
