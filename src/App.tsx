@@ -6,6 +6,7 @@ import { Menu } from './screens/Menu';
 import { HttpRequest } from './screens/HttpRequest';
 import { QRCodeGenerator } from './screens/QRCodeGenerator';
 import { CanvasDraw } from './screens/CanvasDraw';
+import { SpringAnimation } from './screens/SpringAnimation';
 
 function App() {
   const screens = [
@@ -13,17 +14,26 @@ function App() {
     'embroidery-preview',
     'shopify-multipass',
     'QRCodeGenerator',
-    'canvas-draw'
+    'canvas-draw',
+    'spring-animation'
   ];
   return (
-    <>
+    <div
+      style={{
+        overflowY: 'scroll',
+        scrollBehavior: 'smooth',
+        scrollSnapType: 'y mandatory',
+        height: '100%'
+      }}
+    >
       <Menu screens={screens} id="menu" />
       <HttpRequest id={screens[0]} />
       <EmbroideryPreview id={screens[1]} />
       <ShopifyMultipass id={screens[2]} />
       <QRCodeGenerator id={screens[3]} />
       <CanvasDraw id={screens[4]} />
-    </>
+      <SpringAnimation id={screens[5]} />
+    </div>
   );
 }
 
